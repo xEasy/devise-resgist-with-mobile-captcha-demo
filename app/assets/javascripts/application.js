@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  $('#get-captcha-btn').on('click',function(e){
+    e.preventDefault();
+    var userMobile = $('#user_mobile').val();
+    if (userMobile == undefined || userMobile == '') {
+      alert('请输入手机号');
+    }else{
+      $.post('/send_captcha', { 
+        mobile: userMobile
+      }).success(function(){
+        alert('发送成功');
+      }).error(function(){
+        alert('发送失败');
+      });
+    };
+  });
+});
